@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CTF - FACAPE</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        body {
+            display: flex;
+            flex-direction: row;
+            height: 100vh;
+            font-family: Arial, Helvetica, sans-serif;
+        }
+        .flexBase {
+            flex-grow: 1;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            gap: 1rem;
+            font-size: 2rem;
+            font-weight: bold;
+            height: 100vh;
+        }
+        #button {
+            width: 100px;
+            height: 40px;
+            border-radius: 6px;
+            border-style: none;
+            color: #FFF;
+            background-color: #213E98;
+            font-size: 16px;
+            font-weight: bold;
+            margin-top: 1rem;
+        }
+        #button:hover {
+            background-color: #0e2b80;
+        }
+        section {
+            background-color: #213E98;
+            color: #FFF;
+        }
+        main {
+            color: #213E98;
+        }
+        span {
+            text-decoration: underline;
+        }
+        .textInput {
+            border-style: none;
+            font-size: 20px;
+            border-bottom: 3px solid #213E98;
+            line-height: 3rem;
+            border-radius: 8px;
+            padding-left: 12px;
+            color: #213E98;
+        }
+        .textInput:focus, input:focus {
+            box-shadow: 0 0 0 0;
+            outline: 0;
+            background-color: #D1D1D1;
+        }
+        input {
+            margin-top: 8px;
+            margin-bottom: 8px;
+        }
+        @media (max-width: 800px) {
+            body {
+                flex-direction: column;
+            }
+            section, main {
+                height: 50vh;
+            }
+            h1 {
+                font-size: 100%;
+            }
+        }
+    </style>
+</head>
+<body>
+    <section class="flexBase">
+        <img src="/public/Logo_FACAPE.svg" alt="Logo FACAPE" width="250">
+        <h1><span>Portal</span> do Aluno</h1>
+    </section>
+    <main class="flexBase">
+        <form action="/" method="post">
+            <label class="label" for="matricula">Matricula</label><br>
+            <input class="textInput" type="text" name="matricula" id="matricula" placeholder="00000"><br>
+            <label class="label" for="password">Senha</label><br>
+            <input class="textInput" type="password" name="password" id="password" placeholder="Digite sua senha"><br>
+            <input id="button" type="submit" value="Entrar">
+        </form>
+    </main>
+</body>
+</html>
