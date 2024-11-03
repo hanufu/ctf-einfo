@@ -18,6 +18,19 @@ func home(w http.ResponseWriter, r *http.Request) {
 	http.ServeFile(w, r, "index.html")
 }
 
+func cadastro(w http.ResponseWriter, r *http.Request) {
+	if r.Method != "POST" {
+		http.ServeFile(w, r, "cadastro.html")
+		return
+	}
+	usuario := r.FormValue("usuario")
+	email := r.FormValue("email")
+	password := r.FormValue("password")
+
+	fmt.Printf("Usuario: %s, Email: %s Senha: %s\n", usuario, email, password)
+	http.ServeFile(w, r, "index.html")
+}
+
 // func handleHiddenDir(w http.ResponseWriter, r *http.Request) {
 // 	// Caminho para o diretório "oculto"
 // 	hiddenDir := ".hidden"
@@ -39,6 +52,7 @@ func main() {
 
 	// Serve o HTML
 	http.HandleFunc("/", home)
+	http.HandleFunc("/cadastro", cadastro)
 
 	fmt.Println("Server rodando em http://localhost:8080")
 	http.ListenAndServe(":8080", nil)

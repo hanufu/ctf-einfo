@@ -28,7 +28,7 @@
             height: 100vh;
         }
         #button {
-            width: 100px;
+            width: 200px;
             height: 40px;
             border-radius: 6px;
             border-style: none;
@@ -41,15 +41,8 @@
         #button:hover {
             background-color: #0e2b80;
         }
-        section {
-            background-color: #213E98;
-            color: #FFF;
-        }
         main {
             color: #213E98;
-        }
-        span {
-            text-decoration: underline;
         }
         .textInput {
             border-style: none;
@@ -64,11 +57,6 @@
             box-shadow: 0 0 0 0;
             outline: 0;
             background-color: #D1D1D1;
-        }
-        a {
-            font-size: 1rem;
-            font-size: 20px;
-            color: #0e2b80;       
         }
         input {
             margin-top: 8px;
@@ -88,18 +76,15 @@
     </style>
 </head>
 <body>
-    <section class="flexBase">
-        <img src="/public/Logo_FACAPE.svg" alt="Logo FACAPE" width="250">
-        <h1><span>Portal</span> do Aluno</h1>
-    </section>
     <main class="flexBase">
-        <form action="/" method="post">
-            <label class="label" for="matricula">Matricula</label><br>
-            <input class="textInput" type="text" name="matricula" id="matricula" placeholder="00000"><br>
+        <form action="/cadastro" method="post">
+            <label class="label" for="Usuario">Usuario</label><br>
+            <input class="textInput" type="text" name="usuario" id="usuario" placeholder="Digite seu usuario"><br>
+            <label class="label" for="email">Email</label><br>
+            <input class="textInput" type="text" name="email" id="email" placeholder="Digite seu Email"><br>
             <label class="label" for="password">Senha</label><br>
             <input class="textInput" type="password" name="password" id="password" placeholder="Digite sua senha"><br>
-            <input id="button" type="submit" value="Entrar">
-            <a href="./cadastro">Fazer Cadastro</a>
+            <input id="button" type="submit" value="Fazer Cadastror">
         </form>
     </main>
 </body>
