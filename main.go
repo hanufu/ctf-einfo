@@ -11,10 +11,10 @@ func home(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 	fmt.Println("Post")
-	matricula := r.FormValue("matricula")
+	usuario := r.FormValue("usuario")
 	password := r.FormValue("password")
 
-	fmt.Printf("Matricula: %s Password: %s", matricula, password)
+	fmt.Printf("Usuario: %s, Password: %s\n", usuario, password)
 	http.ServeFile(w, r, "index.html")
 }
 
@@ -27,7 +27,7 @@ func cadastro(w http.ResponseWriter, r *http.Request) {
 	email := r.FormValue("email")
 	password := r.FormValue("password")
 
-	fmt.Printf("Usuario: %s, Email: %s Senha: %s\n", usuario, email, password)
+	fmt.Printf("Usuario: %s, Email: %s, Password: %s\n", usuario, email, password)
 	http.ServeFile(w, r, "index.html")
 }
 
