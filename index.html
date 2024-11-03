@@ -101,6 +101,14 @@
             <input id="button" type="submit" value="Entrar">
             <a href="./cadastro">Fazer Cadastro</a>
         </form>
+            <p id="alert" hidden="false" style="color: red; font-size: 1rem;">Usuário ou Senha inválidos</p>
+            <script>
+                const urlParams = new URLSearchParams(window.location.search);
+                if (urlParams.has('error')) {
+                    document.getElementById("alert").hidden = false;
+                }
+            </script>
+            
     </main>
 </body>
 </html>

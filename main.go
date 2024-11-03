@@ -61,7 +61,7 @@ func index(w http.ResponseWriter, r *http.Request) {
 			}
 
 			fmt.Printf("Login falhou para o usuário: %s, IP: %s\n", usuario, userIp)
-			http.ServeFile(w, r, "index.html")
+			http.Redirect(w, r, "/?error=invalid_credentials", http.StatusSeeOther)
 			return
 		}
 		http.Error(w, "Método não permitido", http.StatusMethodNotAllowed)
@@ -95,7 +95,6 @@ func cadastro(w http.ResponseWriter, r *http.Request) {
 	http.Error(w, "Método não permitido", http.StatusMethodNotAllowed)
 }
 
-// Função para cadastrar um novo usuário
 func cadastrarUsuario(usuario, email, senha, ip string) error {
 	_, err := db.Exec("INSERT INTO usuarios (usuario, email, senha, ip) VALUES (?, ?, ?, ?)", usuario, email, senha, ip)
 	return err
