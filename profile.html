@@ -3,9 +3,130 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Home</title>
+    <title>Perfil do Usuário</title>
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: Arial, sans-serif;
+        }
+        body {
+            height: 100vh;
+            width: 100vw;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            background-color: #F0F0F5;
+        }
+        header {
+            width: 100%;
+            background-color: #213E98;
+            color: #FFF;
+            padding: 1rem;
+            text-align: center;
+        }
+        header h1 {
+            font-size: 1.5rem;
+        }
+        header h2 {
+            font-size: 1rem;
+            margin: 0.5rem 0;
+        }
+        main {
+            width: 100%;
+            max-width: 800px;
+            padding: 2rem;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 1rem;
+        }
+        .flag-input-container {
+            width: 100%;
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+        .flag-input-container label {
+            width: 150px;
+            font-weight: bold;
+            color: #333;
+        }
+        .flag-input-container input[type="text"] {
+            flex-grow: 1;
+            padding: 0.5rem;
+            font-size: 1rem;
+            border: 2px solid #213E98;
+            border-radius: 5px;
+            color: #213E98;
+        }
+        .flag-input-container button {
+            padding: 0.5rem 1rem;
+            font-size: 1rem;
+            font-weight: bold;
+            background-color: #213E98;
+            color: #FFF;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+        .flag-input-container button:hover {
+            background-color: #1a2f78;
+        }
+    </style>
 </head>
 <body>
-    <h1>Home</h1>
+    <header>
+        <h1>Usuário: Nome do Usuário</h1>
+        <h2>Email: email@gmail.com</h2>
+        <h2>Pontuação: 1000</h2>
+    </header>
+    <main>
+        <!-- Exemplo de input para flags -->
+        <div class="flag-input-container">
+            <label for="flag1">Flag 1:</label>
+            <input type="text" id="flag1" placeholder="Cole a flag aqui">
+            <button onclick="enviarFlag('flag1')">Enviar</button>
+        </div>
+        <div class="flag-input-container">
+            <label for="flag2">Flag 2:</label>
+            <input type="text" id="flag2" placeholder="Cole a flag aqui">
+            <button onclick="enviarFlag('flag2')">Enviar</button>
+        </div>
+        <div class="flag-input-container">
+            <label for="flag3">Flag 3:</label>
+            <input type="text" id="flag3" placeholder="Cole a flag aqui">
+            <button onclick="enviarFlag('flag3')">Enviar</button>
+        </div>
+        <!-- Adicione mais inputs conforme necessário -->
+    </main>
+
+    <script>
+        function enviarFlag(flagId) {
+            const flagValue = document.getElementById(flagId).value;
+            if (flagValue) {
+                // Exemplo de envio para o servidor
+                fetch('/enviar-flag', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ flag: flagValue })
+                })
+                .then(response => {
+                    if (response.ok) {
+                        alert('Flag enviada com sucesso!');
+                    } else {
+                        alert('Falha ao enviar a flag. Tente novamente.');
+                    }
+                })
+                .catch(error => {
+                    console.error('Erro ao enviar a flag:', error);
+                });
+            } else {
+                alert('Por favor, insira uma flag.');
+            }
+        }
+    </script>
 </body>
 </html>
