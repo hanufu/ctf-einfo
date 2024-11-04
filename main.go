@@ -82,6 +82,11 @@ func cadastro(w http.ResponseWriter, r *http.Request) {
 		password := r.FormValue("password")
 		userIp := r.RemoteAddr
 
+		err := db.QueryRow("SELECT senha FROM usuarios WHERE usuario = ?", usuario)
+		if err != nil {
+			http.Error(w, "Usuário já existe", http.StatusConflict)
+			return
+		}
 		// Cadastrar o novo usuário
 		if err := cadastrarUsuario(usuario, email, password, userIp); err != nil {
 			http.Error(w, "Erro ao cadastrar usuário", http.StatusInternalServerError)

@@ -77,15 +77,40 @@
 </head>
 <body>
     <main class="flexBase">
-        <form action="/cadastro" method="post">
+        <p id="alert" hidden style="color: red; font-size: 1rem;">Usuário já existe!</p>
+        <form id="cadastroForm" onsubmit="cadastrar(event)">
             <label class="label" for="Usuario">Usuario</label><br>
             <input class="textInput" type="text" name="usuario" id="usuario" placeholder="Digite seu usuario"><br>
             <label class="label" for="email">Email</label><br>
             <input class="textInput" type="text" name="email" id="email" placeholder="Digite seu Email"><br>
             <label class="label" for="password">Senha</label><br>
             <input class="textInput" type="password" name="password" id="password" placeholder="Digite sua senha"><br>
-            <input id="button" type="submit" value="Fazer Cadastror">
+            <input id="button" type="submit" value="Fazer Cadastro">
         </form>
     </main>
+    <script>
+        async function cadastrar(event) {
+            event.preventDefault(); // Impede o envio padrão do formulário
+
+            const form = document.getElementById("cadastroForm");
+            const formData = new FormData(form);
+
+            try {
+                const response = await fetch("/cadastro", {
+                    method: "POST",
+                    body: formData
+                });
+
+                if (response.status === 409) { // Se o usuário já existe
+                    document.getElementById("alert").hidden = false;
+                } else {
+                    document.getElementById("alert").hidden = true;
+                    window.location.href = "/home.html"; // Redireciona em caso de sucesso
+                }
+            } catch (error) {
+                console.error("Erro ao enviar o formulário:", error);
+            }
+        }
+    </script>
 </body>
 </html>
